@@ -30,3 +30,10 @@ VALUES ("효녀 심청", 12, 0, "종이책", 9, "심청아..", "공양미 삼백
 
 INSERT INTO books (title, img, category_id, form, isbn, summary, detail, author, pages, contents, price, pub_date)
 VALUES ("혹부리 영감", 22, 2, "ebook", 10, "노래 주머니..", "혹 두개 되버림..", "김영감", 100, "목차입니다.", 20000, "2023-06-05");
+
+
+INSERT INTO likes (user_id, liked_book_id) VALUES (1, 1);
+SELECT *, (SELECT count(*) FROM likes WHERE books.id=liked_book_id) AS likes FROM books;
+
+INSERT INTO cartItems (book_id, quantity, user_id) VALUES (1,1,1);
+SELECT * FROM cartItems WHERE user_id = 1 AND id IN(1,3)

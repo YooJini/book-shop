@@ -6,7 +6,7 @@ const getAllBooks = (req, res) => {
 
     let offset = limit * (current_page - 1);
     let values = [];
-    let sql = 'SELECT * FROM books';
+    let sql = 'SELECT *, (SELECT count(*) FROM likes WHERE books.id=liked_book_id) AS likes FROM books';
 
     const isNew = is_new === 'true';
 
@@ -40,10 +40,12 @@ const getAllBooks = (req, res) => {
 };
 
 const getBookDetail = (req, res) => {
-    let { id } = req.params;
-    id = parseInt(id);
+    let {user_id} = req.body;
+    let book_id  = req.params.id;
 
     const sql = 'SELECT * FROM books WHERE id=?';
+    let values = [user_id, book_id];
+
     conn.query(sql, id, (err, results) => {
         if (err) {
             console.log(err);

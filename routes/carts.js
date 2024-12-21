@@ -1,26 +1,17 @@
 const express = require('express');
+const { addCartItem, getCartItems, removeCartItem } = require('../controller/cartController');
 const router = express.Router();
 
 router.use(express.json());
 
 // 담기
-router.post('/', (req, res) => {
-    res.json();
-});
+router.post('/', addCartItem);
 
 // 조회
-router.get('/', (req, res) => {
-
-});
+router.get('/', getCartItems
+);
 
 // 삭제
-router.delete('/:id', (req, res) => {
-
-});
-
-// 선택된 주문 예상 상품 목록 조회
-// router.get('/', (req, res) => {
-    
-// })
+router.delete('/:id', removeCartItem);
 
 module.exports = router;
